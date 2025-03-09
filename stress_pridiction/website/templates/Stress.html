@@ -170,7 +170,7 @@
         }
     </style>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+                document.addEventListener("DOMContentLoaded", function() {
             // Occupation data as a JavaScript object
             const occupations = {
                 'Account Manager': 0, 'Accountant': 1, 'Actor': 2, 'Advertising Executive': 3, 'Advertising Manager': 4, 'Architect': 5, 'Artist': 6, 'Baker': 7, 'Bakery Owner': 8, 'Bank Manager': 9, 'Banker': 10, 'Bartender': 11,
@@ -221,46 +221,17 @@
                 postData.cholesterol_level = getCholesterolValue(postData.cholesterol_level);
                 postData.blood_sugar_level = getBloodSugarValue(postData.blood_sugar_level);
 
-                // For demo purposes, we'll just show a result without making the actual API call
+                // Show loading state
                 const resultElement = document.getElementById("result");
                 resultElement.style.display = "block";
-                
-                // Simulate random result for demonstration
-                const results = [
-                    { level: 0, message: "High stress level: It's important to take steps to manage your stress. Consider relaxation techniques, exercise, and talking to a professional if needed." },
-                    { level: 1, message: "Low stress level: You are managing your stress well. Keep up the good work and continue with your healthy habits." },
-                    { level: 2, message: "Medium stress level: You are experiencing some stress. Try to identify the sources of stress and find ways to reduce them." }
-                ];
-                
-                const randomResult = results[Math.floor(Math.random() * results.length)];
-                
-                // Set result message and classes based on stress level
-                let resultClass = "";
-                let resultTitle = "";
-                
-                if (randomResult.level === 0) {
-                    resultClass = "high-stress";
-                    resultTitle = "High Stress Level";
-                } else if (randomResult.level === 1) {
-                    resultClass = "low-stress";
-                    resultTitle = "Low Stress Level";
-                } else {
-                    resultClass = "medium-stress";
-                    resultTitle = "Medium Stress Level";
-                }
-                
                 resultElement.innerHTML = `
-                    <div class="result-card ${resultClass}">
-                        <h3 class="result-title">${resultTitle}</h3>
-                        <p>${randomResult.message}</p>
+                    <div class="result-card">
+                        <h3 class="result-title">Processing...</h3>
+                        <p>Analyzing your data. Please wait...</p>
                     </div>
                 `;
                 
-                // Scroll to result
-                resultElement.scrollIntoView({ behavior: "smooth" });
-
-                // Uncomment if implementing actual API call
-                /*
+                // Make the actual API call
                 fetch("/api/", {
                     method: "POST",
                     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -268,23 +239,51 @@
                 })
                 .then(response => response.json())
                 .then(result => {
+                    // Display the result based on API response
+                    let resultClass = "";
+                    let resultTitle = "";
                     let stressLevelMessage = "Unknown stress level.";
+                    
                     if (result.stress_level === 0) {
-                        stressLevelMessage = "High stress level: It's important to take steps to manage your stress. Consider relaxation techniques, exercise, and talking to a professional if needed.";
+                        resultClass = "high-stress";
+                        resultTitle = "High Stress Level";
+                        stressLevelMessage = "It's important to take steps to manage your stress. Consider relaxation techniques, exercise, and talking to a professional if needed.";
                     } else if (result.stress_level === 1) {
-                        stressLevelMessage = "Low stress level: You are managing your stress well. Keep up the good work and continue with your healthy habits.";
+                        resultClass = "low-stress";
+                        resultTitle = "Low Stress Level";
+                        stressLevelMessage = "You are managing your stress well. Keep up the good work and continue with your healthy habits.";
                     } else if (result.stress_level === 2) {
-                        stressLevelMessage = "Medium stress level: You are experiencing some stress. Try to identify the sources of stress and find ways to reduce them.";
+                        resultClass = "medium-stress";
+                        resultTitle = "Medium Stress Level";
+                        stressLevelMessage = "You are experiencing some stress. Try to identify the sources of stress and find ways to reduce them.";
                     }
-                    document.getElementById("result").textContent = stressLevelMessage;
+                    
+                    resultElement.innerHTML = `
+                        <div class="result-card ${resultClass}">
+                            <h3 class="result-title">${resultTitle}</h3>
+                            <p>${stressLevelMessage}</n></p>
+                            <div class="result-details">
+                                <h4>Stress Analysis</h4>
+                                <p>Based on your lifestyle and health factors, our model predicts ${resultTitle.toLowerCase()}.</p>
+                                <ul>
+                                    ${result.key_factors ? result.key_factors.map(factor => `<li>${factor}</li>`).join('') : ''}
+                                </ul>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Scroll to result
+                    resultElement.scrollIntoView({ behavior: "smooth" });
                 })
                 .catch(error => {
                     console.error("Error:", error);
-                    error.text().then(errorMessage => {
-                        console.error("Error message:", errorMessage);
-                    });
+                    resultElement.innerHTML = `
+                        <div class="result-card">
+                            <h3 class="result-title">Error</h3>
+                            <p>There was a problem processing your data. Please try again later.</p>
+                        </div>
+                    `;
                 });
-                */
             });
 
             // Function to map blood pressure range to an average value
@@ -334,7 +333,7 @@
         
         <form id="predictionForm" method="POST" class="card">
             <!-- Hidden CSRF token field -->
-            <input type="hidden" name="csrfmiddlewaretoken" value="{% csrf_token %}">
+            <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
             
             <h2 class="section-title">Personal Information</h2>
             <div class="form-grid">
