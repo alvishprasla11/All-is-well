@@ -2,13 +2,16 @@
 
 This repository contains a machine learning model to predict the likelihood of depression based on various factors such as age, marital status, education level, smoking status, physical activity, employment status, income, alcohol consumption, dietary habits, sleep patterns, history of mental illness, substance abuse history, family history of depression, and chronic medical conditions.
 
+This model was primarly made for Biohacks 2025 held by Bioinformatics club of University of Calgary 
+For the Compititive track for the Prompt 1 - Public Health subbmition.
+
 ## 📥 Cloning the Repository
 
 To get started, clone this repository to your local machine:
 
 ```bash
 git clone https://github.com/alvishprasla11/All-is-well.git
-cd All-is-wel
+cd All-is-well
 ```
 
 ## 🚀 Getting Started with Django
