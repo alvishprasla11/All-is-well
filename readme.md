@@ -106,6 +106,17 @@ PowerBI/stress_analysis.pbix
 Open this file using Power BI Desktop to explore insights and trends in the dataset.
 
 ---
+## 📊 Presentation
+
+The presentation can be found in the `Presentation/` directory:
+
+```bash
+Presentaion/ALL_IS_WELL
+```
+
+Open this file using MS Powerpoint or Google Slides Desktop to look at the presentation.
+
+---
 
 This repository provides a complete pipeline for predicting stress and analyzing results using machine learning and Power BI. 🚀
 
