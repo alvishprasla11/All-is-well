@@ -73,7 +73,7 @@ pip install -r requirements.txt
 
 ## 🧠 What the Model Does
 
-This machine learning model predicts the likelihood of depression based on input features. It assigns a probability score indicating how likely a person is to be depressed based on their lifestyle, medical history, and socioeconomic factors.
+This machine learning model predicts the likelihood of stress based on input features. It gives a high, mid, low score indicating how likely a person is to be stresseed based on their lifestyle, medical history, and socioeconomic factors.
 
 ## 🏗️ How to Train and Test the Model
 
@@ -107,5 +107,5 @@ Open this file using Power BI Desktop to explore insights and trends in the data
 
 ---
 
-This repository provides a complete pipeline for predicting depression and analyzing results using machine learning and Power BI. 🚀
+This repository provides a complete pipeline for predicting stress and analyzing results using machine learning and Power BI. 🚀
 
