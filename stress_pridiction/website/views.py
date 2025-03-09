@@ -11,7 +11,7 @@ def stress_predictor_page(request):
 
 def stressLevel(input):
     # Load and use the model later
-    loaded_model = joblib.load("stress_prediction_model.pkl")
+    loaded_model = joblib.load("Model/stress_prediction_model.pkl")
     new_prediction = loaded_model.predict(input)
     return new_prediction
 

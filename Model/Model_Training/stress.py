@@ -9,6 +9,8 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score, classification_report
 import joblib
 
+## this was used to finlaize the model not the notebook
+
 # Load the dataset
 df = pd.read_csv("Data/stress_detection_data.csv")
 
@@ -36,6 +38,8 @@ for col, mapping in mappings.items():
 # Check if the changes have been applied
 print("\nUpdated DataFrame Preview:")
 print(df.head())
+
+df.to_csv('transformed_data.csv', index=False)
 
 # Features (X) and target variable (y)
 X = df.drop(columns=["Stress_Detection"])  # Features
@@ -114,6 +118,7 @@ print(f"Random Forest Cross-Validation Accuracy: {rf_cv_scores.mean():.2f}")
 model_to_save = best_rf_model if rf_accuracy > dt_accuracy else best_dt_model
 joblib.dump(model_to_save, "stress_prediction_model.pkl")
 
+# final model choesn was best random forest model
 # Load and use the model later
 loaded_model = joblib.load("stress_prediction_model.pkl")
 new_prediction = loaded_model.predict([[30, 1, 150, 2, 7.0, 4.0, 0, 2.0, 4.0, 0, 0, 8, 1.0, 5, 1, 0, 120, 180, 90]])
