@@ -3,7 +3,7 @@
 This repository contains a machine learning model to predict the likelihood of Stress based on various factors such as Age,Gender, Occupation, Marital_Status, Sleep_Duration, Sleep_Quality, Physical_Activity, Screen_Time, Caffeine_Intake, Alcohol_Intake, Smoking_Habit, Work_Hours, Travel_Time, Social_Interactions, Meditation_Practice, Exercise_Type, Blood_Pressure, Cholesterol_Level and Blood_Sugar_Level
 
 This model was primarly made for Biohacks 2025 held by Bioinformatics club of University of Calgary 
-For the Compititive track for the Prompt 1 - Public Health subbmition.
+For the Compititive track for the Prompt 2 - Mental Health subbmition.
 
 ## 📥 Cloning the Repository
 
