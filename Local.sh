@@ -4,4 +4,4 @@ source ./Biohack/bin/activate
 #python stress_pridiction.py
 
 
-python Model_Training/depresion.py
+python stress_pridiction/manage.py runserver
